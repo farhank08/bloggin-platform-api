@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
@@ -6,6 +7,9 @@ import { fileURLToPath } from 'url';
 import { initDb } from './src/services/dbClient.js';
 import apiRouter from './src/routers/apiRouter.js';
 import viewRouter from './src/routers/viewRouter.js';
+
+// Load environment variables
+dotenv.config();
 
 // Resolve the current file path in ES modules
 const __filename = fileURLToPath(import.meta.url);
