@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<!-- Styles and scripts links -->
+		<link
+			rel="stylesheet"
+			href="../styles/globals.css"
+		/>
+		<script
+			src="../scripts/create.js"
+			type="module"
+			defer
+		></script>
+		<!-- CDN Resources -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div
+			id="container"
+			class="container"
+		>
+			<h1>
+				<a
+					href="/"
+					class="nav-title"
+					>Blogging Platform</a
+				>
+			</h1>
+			<nav></nav>
+			<div
+				id="card-container"
+				class="card-container"
+			>
+				<form
+					id="form"
+					class="card-form"
+				>
+					<label for="form-title">Title</label>
+					<input
+						id="form-title"
+						name="title"
+						type="text"
+						class="card-input"
+						placeholder="New Post Title"
+						required
+					/>
+					<label for="form-category">Category</label>
+					<input
+						id="form-category"
+						name="category"
+						type="text"
+						class="card-input"
+						placeholder="e.g. Travel"
+						required
+					/>
+					<label for="form-category">Tags</label>
+					<input
+						id="form-tags"
+						name="tags"
+						type="text"
+						class="card-input"
+						placeholder="Southeast Asia, Budget Travel"
+						required
+					/>
+					<label for="form-content">Content</label>
+					<textarea
+						id="form-content"
+						name="content"
+						class="card-textarea"
+						placeholder="Write your post here..."
+						rows="6"
+						required
+					></textarea>
+
+					<button
+						id="button-submit"
+						class="create"
+						type="submit"
+					>
+						SAVE
+					</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

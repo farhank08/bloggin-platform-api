@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<!-- Styles and scripts links -->
+		<link
+			rel="stylesheet"
+			href="../styles/globals.css"
+		/>
+		<script
+			src="../scripts/search.js"
+			type="module"
+			defer
+		></script>
+		<!-- CDN Resources -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div
+			id="container"
+			class="container"
+		>
+			<h1>
+				<a
+					href="/"
+					class="nav-title"
+					>Blogging Platform</a
+				>
+			</h1>
+			<nav></nav>
+			<form
+				id="form-search"
+				class="search-form"
+			>
+				<input
+					id="input-search"
+					name="term"
+					type="text"
+					class="search-input"
+					placeholder="Search e.g. Travel, Technology etc."
+					required
+				/>
+				<button
+					type="submit"
+					id="button-submit"
+					class="search"
+				>
+					SEARCH
+				</button>
+			</form>
+			<ul
+				id="card-container"
+				class="card-container"
+			></ul>
+		</div>
+	</body>
+</html>
