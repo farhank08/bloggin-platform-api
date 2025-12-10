@@ -2,11 +2,13 @@
 
 A modular **Node.js + Express** backend for creating, retrieving, updating, deleting, and searching blog posts. Includes a lightweight client interface that interacts with the API and demonstrates clean backend architecture, routing, controllers, and database modeling.
 
+Project from https://roadmap.sh/projects/blogging-platform-api
+
 ---
 
 <div align="center">
 
-![Node.js](https://img.shields.io/badge/Node.js-18.x-green?style=for-the-badge&logo=node.js)
+![Node.js](https://img.shields.io/badge/Node.js-25.x-green?style=for-the-badge&logo=node.js)
 ![Express](https://img.shields.io/badge/Express.js-REST_API-lightgrey?style=for-the-badge&logo=express)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen?style=for-the-badge&logo=mongodb)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)
