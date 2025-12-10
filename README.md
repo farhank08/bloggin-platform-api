@@ -1,18 +1,71 @@
-# Blogging Platform API
+# 📝 Blogging Platform API
 
-A full‑stack blogging platform featuring an Express-based REST API, server‑rendered views, and a client-side interface for creating, updating, searching, and managing blog posts.
+A modular **Node.js + Express** backend for creating, retrieving, updating, deleting, and searching blog posts. Includes a lightweight client interface that interacts with the API and demonstrates clean backend architecture, routing, controllers, and database modeling.
 
 ---
 
-## 🚀 Features
+<div align="center">
 
-- Full CRUD support for blog posts
-- Search functionality using MongoDB text indexes
-- REST API routes and view routes
-- Organized MVC-style folder structure
-- Server‑side rendering with static public pages
-- MongoDB Atlas integration
-- Clean, modular file separation (controllers, models, routers, services)
+![Node.js](https://img.shields.io/badge/Node.js-18.x-green?style=for-the-badge&logo=node.js)
+![Express](https://img.shields.io/badge/Express.js-REST_API-lightgrey?style=for-the-badge&logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen?style=for-the-badge&logo=mongodb)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+</div>
+
+---
+
+## 📚 Table of Contents
+
+1. Quick Start  
+2. Features  
+3. Project Structure  
+4. How It Works  
+5. API Documentation  
+6. Tech Stack  
+7. Environment Variables  
+8. License  
+
+---
+
+## 🚀 Quick Start
+
+```
+npm install
+```
+
+Create `.env`:
+
+```
+MONGODB_USER=your_user
+MONGODB_PASS=your_pass
+PORT=5000
+```
+
+Start server:
+
+```
+npm start
+```
+
+Client interface:  
+http://localhost:5000/
+
+API base URL:  
+http://localhost:5000/api
+
+---
+
+## ✨ Features
+
+- Create, edit, delete blog posts  
+- View posts in a structured interface  
+- MongoDB full‑text search  
+- Sorted post feed by created date  
+- Modular architecture (controllers, routers, models)  
+- Error handling throughout the stack  
+- Centralized DB client  
 
 ---
 
@@ -21,57 +74,112 @@ A full‑stack blogging platform featuring an Express-based REST API, server‑r
 ```
 Blogging Platform API/
 ├─ public/
-│  ├─ scripts/       # Client-side JS for create, edit, search, view pages
-│  ├─ styles/        # Global CSS
-│  └─ views/         # HTML pages (index, post, create, edit, search)
+│  ├─ scripts/
+│  │  ├─ index.js
+│  │  ├─ create.js
+│  │  ├─ edit.js
+│  │  ├─ post.js
+│  │  └─ search.js
+│  ├─ styles/
+│  │  └─ globals.css
+│  └─ views/
+│     ├─ index.html
+│     ├─ create.html
+│     ├─ edit.html
+│     ├─ post.html
+│     └─ search.html
+│
 ├─ src/
-│  ├─ controllers/   # Request handlers
-│  ├─ models/        # Mongoose schemas
-│  ├─ routers/       # API + View routers
-│  └─ services/      # MongoDB connection logic
-├─ server.js          # Main Express server entry point
+│  ├─ controllers/
+│  │  └─ postController.js
+│  ├─ models/
+│  │  └─ postModel.js
+│  ├─ routers/
+│  │  ├─ apiRouter.js
+│  │  └─ viewRouter.js
+│  └─ services/
+│     └─ dbClient.js
+│
+├─ server.js
 └─ package.json
 ```
 
 ---
 
-## ⚙️ Technologies Used
+## 🔧 How It Works
 
-- **Node.js**
-- **Express.js**
-- **MongoDB**
-- **Vanilla JavaScript**
-- **HTML5 & CSS**
+### Request Flow
+Client (views + JS) → View Router → HTML pages  
+↓  
+API Router → Controller → Model → MongoDB
+
+### Data Model
+Posts contain:  
+- title  
+- content  
+- category  
+- tags[]  
+
+A `$text` index enables search across title, content, and category.
+
+### UI Interaction
+JavaScript in `/public/scripts` handles:  
+- Creating posts  
+- Listing posts  
+- Updating posts  
+- Searching posts  
+- Viewing a single post  
 
 ---
 
-## 🔧 How to Install & Run
+# 📘 API Documentation
 
-### 1. Install dependencies
+## Post Routes (Base: `/api/post`)
 
-```
-npm install
-```
+### CRUD Operations
 
-### 2. Create a `.env` file
+| Method | Endpoint        | Description            | Body Params |
+|--------|------------------|------------------------|-------------|
+| GET    | `/post`         | Get all posts          | None        |
+| POST   | `/post`         | Create new post        | title, content, category, tags |
+| GET    | `/post/:id`     | Get post by ID         | None        |
+| PATCH  | `/post/:id`     | Update post            | title?, content?, category?, tags? |
+| DELETE | `/post/:id`     | Delete post            | None        |
 
-```
-MONGODB_USER=your_user
-MONGODB_PASS=your_pass
-PORT=5000
-```
+---
 
-### 3. Start the server
+## Search Route
 
-```
-npm start
-```
+| Method | Endpoint        | Description       | Query |
+|--------|------------------|-------------------|--------|
+| GET    | `/post/search`  | Full‑text search  | term   |
 
-Your app will be running at:  
-**http://localhost:5000**
+Example:  
+`GET /api/post/search?term=node`
+
+---
+
+## 🧱 Tech Stack
+
+| Layer     | Technology |
+|-----------|------------|
+| Backend   | Node.js + Express |
+| Database  | MongoDB + Mongoose |
+| Frontend  | HTML, CSS, JavaScript |
+| Config    | dotenv |
+
+---
+
+## 🔐 Environment Variables
+
+| Variable       | Description |
+|----------------|-------------|
+| MONGODB_USER   | MongoDB username |
+| MONGODB_PASS   | MongoDB password |
+| PORT           | Server port |
 
 ---
 
 ## 📜 License
 
-This project is provided for educational and portfolio purposes.
+MIT License — free for education and portfolio presentation.
