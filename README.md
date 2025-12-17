@@ -2,10 +2,11 @@
 
 A Node.js **blogging platform API** with server‑rendered views that allows users to create, edit, search, and view blog posts. The application uses **Express**, **MongoDB (Mongoose)**, and serves both **JSON API endpoints** and **HTML pages** for interacting with blog content.
 
+Project from https://roadmap.sh/projects/blogging-platform-api
+
 ## Prerequisites
 
-- Node.js **v25** or higher
-- npm
+- Node.js
 - MongoDB (local instance or managed service such as MongoDB Atlas)
 
 ## Installation
@@ -77,14 +78,14 @@ All API routes are prefixed and handled via the API router.
 
 ### Posts
 
-| Method | Endpoint | Description |
-|------|---------|------------|
-| GET | `/api/posts` | Get all blog posts |
-| GET | `/api/posts/:id` | Get a single post by ID |
-| POST | `/api/posts` | Create a new post |
-| PUT | `/api/posts/:id` | Update an existing post |
-| DELETE | `/api/posts/:id` | Delete a post |
-| GET | `/api/posts/search?q=` | Search posts by title or content |
+| Method | Endpoint               | Description                      |
+| ------ | ---------------------- | -------------------------------- |
+| GET    | `/api/posts`           | Get all blog posts               |
+| GET    | `/api/posts/:id`       | Get a single post by ID          |
+| POST   | `/api/posts`           | Create a new post                |
+| PUT    | `/api/posts/:id`       | Update an existing post          |
+| DELETE | `/api/posts/:id`       | Delete a post                    |
+| GET    | `/api/posts/search?q=` | Search posts by title or content |
 
 ## Views
 
@@ -120,4 +121,3 @@ The schema is defined using **Mongoose** in `postModel.js`.
 ## License
 
 This project is licensed under the ISC License.
-
