@@ -7,6 +7,7 @@ Project from https://roadmap.sh/projects/blogging-platform-api
 ## Prerequisites
 
 - Node.js
+- Express
 - MongoDB (local instance or managed service such as MongoDB Atlas)
 
 ## Installation
