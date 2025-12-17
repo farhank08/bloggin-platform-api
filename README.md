@@ -51,28 +51,6 @@ The application will be available at:
 http://localhost:3000
 ```
 
-## Application Structure
-
-```text
-Blogging Platform API/
-├── server.js
-├── package.json
-├── public/
-│   ├── scripts/
-│   ├── styles/
-│   └── views/
-└── src/
-    ├── controllers/
-    │   └── postController.js
-    ├── models/
-    │   └── postModel.js
-    ├── routers/
-    │   ├── apiRouter.js
-    │   └── viewRouter.js
-    └── services/
-        └── dbClient.js
-```
-
 ## API Endpoints
 
 All API routes are prefixed and handled via the API router.
