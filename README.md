@@ -1,187 +1,123 @@
-# 📝 Blogging Platform API
+# Blogging Platform API
 
-A modular **Node.js + Express** backend for creating, retrieving, updating, deleting, and searching blog posts. Includes a lightweight client interface that interacts with the API and demonstrates clean backend architecture, routing, controllers, and database modeling.
+A Node.js **blogging platform API** with server‑rendered views that allows users to create, edit, search, and view blog posts. The application uses **Express**, **MongoDB (Mongoose)**, and serves both **JSON API endpoints** and **HTML pages** for interacting with blog content.
 
-Project from https://roadmap.sh/projects/blogging-platform-api
+## Prerequisites
 
----
+- Node.js **v25** or higher
+- npm
+- MongoDB (local instance or managed service such as MongoDB Atlas)
 
-<div align="center">
+## Installation
 
-![Node.js](https://img.shields.io/badge/Node.js-25.x-green?style=for-the-badge&logo=node.js)
-![Express](https://img.shields.io/badge/Express.js-REST_API-lightgrey?style=for-the-badge&logo=express)
-![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen?style=for-the-badge&logo=mongodb)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+1. **Clone the repository**
 
-</div>
-
----
-
-## 📚 Table of Contents
-
-1. Quick Start  
-2. Features  
-3. Project Structure  
-4. How It Works  
-5. API Documentation  
-6. Tech Stack  
-7. Environment Variables  
-8. License  
-
----
-
-## 🚀 Quick Start
-
+```bash
+git clone <repository-url>
+cd blogging-platform-api
 ```
+
+2. **Install dependencies**
+
+```bash
 npm install
 ```
 
-Create `.env`:
+## Configuration
 
-```
-MONGODB_USER=your_user
-MONGODB_PASS=your_pass
-PORT=5000
+### Environment Variables
+
+Create a `.env` file in the project root and configure the following variable:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
 ```
 
-Start server:
+- `MONGODB_URI` – MongoDB connection string used by Mongoose
 
-```
+## Running the Application
+
+### Start the server
+
+```bash
 npm start
 ```
 
-Client interface:  
-http://localhost:5000/
-
-API base URL:  
-http://localhost:5000/api
-
----
-
-## ✨ Features
-
-- Create, edit, delete blog posts  
-- View posts in a structured interface  
-- MongoDB full‑text search  
-- Sorted post feed by created date  
-- Modular architecture (controllers, routers, models)  
-- Error handling throughout the stack  
-- Centralized DB client  
-
----
-
-## 📂 Project Structure
+The application will be available at:
 
 ```
+http://localhost:3000
+```
+
+## Application Structure
+
+```text
 Blogging Platform API/
-├─ public/
-│  ├─ scripts/
-│  │  ├─ index.js
-│  │  ├─ create.js
-│  │  ├─ edit.js
-│  │  ├─ post.js
-│  │  └─ search.js
-│  ├─ styles/
-│  │  └─ globals.css
-│  └─ views/
-│     ├─ index.html
-│     ├─ create.html
-│     ├─ edit.html
-│     ├─ post.html
-│     └─ search.html
-│
-├─ src/
-│  ├─ controllers/
-│  │  └─ postController.js
-│  ├─ models/
-│  │  └─ postModel.js
-│  ├─ routers/
-│  │  ├─ apiRouter.js
-│  │  └─ viewRouter.js
-│  └─ services/
-│     └─ dbClient.js
-│
-├─ server.js
-└─ package.json
+├── server.js
+├── package.json
+├── public/
+│   ├── scripts/
+│   ├── styles/
+│   └── views/
+└── src/
+    ├── controllers/
+    │   └── postController.js
+    ├── models/
+    │   └── postModel.js
+    ├── routers/
+    │   ├── apiRouter.js
+    │   └── viewRouter.js
+    └── services/
+        └── dbClient.js
 ```
 
----
+## API Endpoints
 
-## 🔧 How It Works
+All API routes are prefixed and handled via the API router.
 
-### Request Flow
-Client (views + JS) → View Router → HTML pages  
-↓  
-API Router → Controller → Model → MongoDB
+### Posts
 
-### Data Model
-Posts contain:  
-- title  
-- content  
-- category  
-- tags[]  
+| Method | Endpoint | Description |
+|------|---------|------------|
+| GET | `/api/posts` | Get all blog posts |
+| GET | `/api/posts/:id` | Get a single post by ID |
+| POST | `/api/posts` | Create a new post |
+| PUT | `/api/posts/:id` | Update an existing post |
+| DELETE | `/api/posts/:id` | Delete a post |
+| GET | `/api/posts/search?q=` | Search posts by title or content |
 
-A `$text` index enables search across title, content, and category.
+## Views
 
-### UI Interaction
-JavaScript in `/public/scripts` handles:  
-- Creating posts  
-- Listing posts  
-- Updating posts  
-- Searching posts  
-- Viewing a single post  
+The application serves HTML views for interacting with blog posts directly in the browser:
 
----
+- Home / posts list
+- View single post
+- Create post
+- Edit post
+- Search posts
 
-# 📘 API Documentation
+These views are located under `public/views` and are rendered via the view router.
 
-## Post Routes (Base: `/api/post`)
+## Data Model
 
-### CRUD Operations
+### Post
 
-| Method | Endpoint        | Description            | Body Params |
-|--------|------------------|------------------------|-------------|
-| GET    | `/post`         | Get all posts          | None        |
-| POST   | `/post`         | Create new post        | title, content, category, tags |
-| GET    | `/post/:id`     | Get post by ID         | None        |
-| PATCH  | `/post/:id`     | Update post            | title?, content?, category?, tags? |
-| DELETE | `/post/:id`     | Delete post            | None        |
+Each blog post includes:
 
----
+- `title`
+- `content`
+- `createdAt`
+- `updatedAt`
 
-## Search Route
+The schema is defined using **Mongoose** in `postModel.js`.
 
-| Method | Endpoint        | Description       | Query |
-|--------|------------------|-------------------|--------|
-| GET    | `/post/search`  | Full‑text search  | term   |
+## Notes
 
-Example:  
-`GET /api/post/search?term=node`
+- MongoDB connection is initialized during server startup
+- API logic and view rendering are cleanly separated via routers
+- The project follows a simple **MVC‑style structure**
 
----
+## License
 
-## 🧱 Tech Stack
+This project is licensed under the ISC License.
 
-| Layer     | Technology |
-|-----------|------------|
-| Backend   | Node.js + Express |
-| Database  | MongoDB + Mongoose |
-| Frontend  | HTML, CSS, JavaScript |
-| Config    | dotenv |
-
----
-
-## 🔐 Environment Variables
-
-| Variable       | Description |
-|----------------|-------------|
-| MONGODB_USER   | MongoDB username |
-| MONGODB_PASS   | MongoDB password |
-| PORT           | Server port |
-
----
-
-## 📜 License
-
-MIT License — free for education and portfolio presentation.
